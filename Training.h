@@ -2,6 +2,7 @@
 #define TRAINING_H
 
 #include <iostream>
+#include <sqlite3.h>
 using namespace std; 
 
 
@@ -12,12 +13,16 @@ class Training{
     int TrainingID; 
 
     Training(string trainingName, int ID);
+    Training(const char* dbPath);
     Training();
     string getTrainingName();
     vector<string>getInProgressEmployees(); 
-    void addEmployeeToTraining(string,int,double);
+    void addEmployee();
     void removeEmployeeFromTraining(string,int); 
+    string randomizeEmployee();
 
+    private: 
+    sqlite3* dataBase;
 
 
 };
