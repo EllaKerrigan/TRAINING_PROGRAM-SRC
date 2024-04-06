@@ -9,20 +9,22 @@ using namespace std;
 class Training{ 
     public: 
     string TrainingType; 
-    vector<string> inProgressEmployees; 
     int TrainingID; 
 
     Training(string trainingName, int ID);
     Training(const char* dbPath);
     Training();
-    string getTrainingName();
-    vector<string>getInProgressEmployees(); 
+    string getTrainingName(); 
     void addEmployee();
-    void removeEmployeeFromTraining(string,int); 
-    string randomizeEmployee();
-
+    void removeEmployeeFromTraining(); 
+    void randomizeEmployee();
+    void deleteEmployee(int &ID);
+    void printInProgressEmployees();
+    
     private: 
     sqlite3* dataBase;
+    vector<string>inProgressEmployees;
+    vector<string>employees;
 
 
 };
