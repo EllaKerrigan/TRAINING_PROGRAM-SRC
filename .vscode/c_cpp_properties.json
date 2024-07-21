@@ -1,0 +1,23 @@
+{
+    "configurations": [
+      {
+        "name": "Mac",
+        "includePath": [
+          "${workspaceFolder}/**",
+          "/Users/ellakerrigan/.nvm/versions/node/v22.5.1/include/node" ,
+          "/usr/local/include",
+        ],
+        "defines": [],
+        "macFrameworkPath": [
+          "/System/Library/Frameworks",
+          "/Library/Frameworks"
+      ],
+        "compilerPath": "/usr/bin/gcc",
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "macos-clang-x64",
+      }
+    ],
+    "version": 4
+  }
+  

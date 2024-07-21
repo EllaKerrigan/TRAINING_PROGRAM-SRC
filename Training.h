@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <sqlite3.h>
+#include <vector>
+#include <string>
 using namespace std; 
 
 
@@ -14,6 +16,7 @@ class Training{
     Training(string trainingName, int ID);
     Training(const char* dbPath);
     Training();
+    ~Training();
     string getTrainingName(); 
     void addEmployee();
     void removeEmployeeFromTraining(); 

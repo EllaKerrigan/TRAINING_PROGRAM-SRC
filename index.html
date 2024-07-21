@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Employee Training System</title>
+</head>
+<body>
+    <header>
+        <h1>Employee Training System</h1>
+    </header>
+
+    <div id="bearImageContainer" class="bear-image-container-login">
+        <img src="bear.jpg" alt="Bear Image" class="bear-image-login">
+    </div>
+
+    <main>
+        <div id="loginContainer">
+            <h2>Welcome to the Employee Training System</h2>
+            <p>Enter password to begin:</p>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <p id="loginMessage"></p>
+        </div>
+
+        <div id="appContainer" style="display: none;">
+            <nav id="appMenu">
+                <ul>
+                    <li><a href="#" onclick="showEmployeeList()">View Employee List</a></li>
+                    <li><a href="#" onclick="showTrainingList()">View Training List</a></li>
+                    <li><a href="#" onclick="randomizeEmployee()">Randomize Employee</a></li>
+                    <li><a href="#" onclick="viewCompletedStewards()">View Completed Stewards</a></li>
+                    <li><a href="#" onclick="removeSteward()">Remove Steward</a></li>
+                    <li><a href="#" onclick="addNewSteward()">Add New Steward</a></li>
+                </ul>
+            </nav>
+
+            <section id="contentArea">
+                <div id="employeeList" style="display: none;">
+                    <h2>Employee List</h2>
+                    <ul id="employeeListItems"></ul>
+                </div>
+
+                <div id="trainingList" style="display: none;">
+                    <h2>Training List</h2>
+                    <ul id="trainingListItems"></ul>
+                </div>
+                <a href="#" onclick="showEmployeeList()">View Employee List</a>
+            </section>
+        </div>
+
+        <div id="dashboard" style="display: none;">
+            <h2>Welcome to the Employee Training System Dashboard</h2>
+            <p>Choose an option below:</p>
+            <div class="dashboard-options">
+                <div class="dashboard-option" onclick="showEmployeeList()">View Employee List</div>
+                <div class="dashboard-option" onclick="showTrainingList()">View Training List</div>
+                <div class="dashboard-option" onclick="randomizeEmployee()">Randomize Employee</div>
+                <div class="dashboard-option" onclick="viewCompletedStewards()">View Completed Stewards</div>
+                <div class="dashboard-option" onclick="removeSteward()">Remove Steward</div>
+                <div class="dashboard-option" onclick="addNewSteward()">Add New Steward</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

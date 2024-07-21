@@ -76,5 +76,3 @@ void menu(const char* dbPath){
     }
  };
     
-   
-
