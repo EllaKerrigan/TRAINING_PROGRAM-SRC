@@ -2,6 +2,16 @@
 {
   "target_defaults": {
     "cflags": [],
+    "configurations": {
+      "Debug": {
+        "v8_enable_v8_checks": 0,
+        "variables": {}
+      },
+      "Release": {
+        "v8_enable_v8_checks": 1,
+        "variables": {}
+      }
+    },
     "default_configuration": "Release",
     "defines": [],
     "include_dirs": [],
@@ -29,7 +39,6 @@
     "icu_path": "deps/icu-small",
     "icu_small": "false",
     "icu_ver_major": "75",
-    "is_debug": 0,
     "libdir": "lib",
     "llvm_version": "13.0",
     "napi_build_version": "9",
@@ -86,7 +95,10 @@
       "lib/internal/assert.js",
       "lib/internal/assert/assertion_error.js",
       "lib/internal/assert/calltracker.js",
+      "lib/internal/async_context_frame.js",
       "lib/internal/async_hooks.js",
+      "lib/internal/async_local_storage/async_context_frame.js",
+      "lib/internal/async_local_storage/async_hooks.js",
       "lib/internal/blob.js",
       "lib/internal/blocklist.js",
       "lib/internal/bootstrap/node.js",
@@ -169,6 +181,7 @@
       "lib/internal/http2/util.js",
       "lib/internal/idna.js",
       "lib/internal/inspector_async_hook.js",
+      "lib/internal/inspector_network_tracking.js",
       "lib/internal/js_stream_socket.js",
       "lib/internal/legacy/processbinding.js",
       "lib/internal/linkedlist.js",
@@ -257,6 +270,7 @@
       "lib/internal/streams/destroy.js",
       "lib/internal/streams/duplex.js",
       "lib/internal/streams/duplexify.js",
+      "lib/internal/streams/duplexpair.js",
       "lib/internal/streams/end-of-stream.js",
       "lib/internal/streams/from.js",
       "lib/internal/streams/lazy_transform.js",
@@ -273,6 +287,7 @@
       "lib/internal/test/transfer.js",
       "lib/internal/test_runner/coverage.js",
       "lib/internal/test_runner/harness.js",
+      "lib/internal/test_runner/mock/loader.js",
       "lib/internal/test_runner/mock/mock.js",
       "lib/internal/test_runner/mock/mock_timers.js",
       "lib/internal/test_runner/reporter/dot.js",
@@ -348,7 +363,6 @@
       "lib/string_decoder.js",
       "lib/sys.js",
       "lib/test.js",
-      "lib/test/mock_loader.js",
       "lib/test/reporters.js",
       "lib/timers.js",
       "lib/timers/promises.js",
@@ -385,6 +399,7 @@
     "node_shared_zlib": "false",
     "node_tag": "",
     "node_target_type": "executable",
+    "node_use_amaro": "true",
     "node_use_bundled_v8": "true",
     "node_use_node_code_cache": "true",
     "node_use_node_snapshot": "true",
@@ -412,10 +427,9 @@
     "v8_enable_maglev": 1,
     "v8_enable_object_print": 1,
     "v8_enable_pointer_compression": 0,
+    "v8_enable_sandbox": 0,
     "v8_enable_shared_ro_heap": 1,
-    "v8_enable_v8_checks": 0,
     "v8_enable_webassembly": 1,
-    "v8_no_strict_aliasing": 1,
     "v8_optimized_debug": 1,
     "v8_promise_internal_field_count": 1,
     "v8_random_seed": 0,
@@ -423,8 +437,18 @@
     "v8_use_siphash": 1,
     "want_separate_host_toolset": 0,
     "xcode_version": "13.0",
-    "nodedir": "/Users/ellakerrigan/Library/Caches/node-gyp/22.5.1",
+    "nodedir": "/Users/ellakerrigan/Library/Caches/node-gyp/22.7.0",
     "python": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
-    "standalone_static_library": 1
+    "standalone_static_library": 1,
+    "global_prefix": "/Users/ellakerrigan/.nvm/versions/node/v22.7.0",
+    "local_prefix": "/Users/ellakerrigan/TRAINING_PROJECT:SRC",
+    "globalconfig": "/Users/ellakerrigan/.nvm/versions/node/v22.7.0/etc/npmrc",
+    "init_module": "/Users/ellakerrigan/.npm-init.js",
+    "userconfig": "/Users/ellakerrigan/.npmrc",
+    "npm_version": "10.8.2",
+    "node_gyp": "/Users/ellakerrigan/.nvm/versions/node/v22.7.0/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+    "cache": "/Users/ellakerrigan/.npm",
+    "user_agent": "npm/10.8.2 node/v22.7.0 darwin arm64 workspaces/false",
+    "prefix": "/Users/ellakerrigan/.nvm/versions/node/v22.7.0"
   }
 }
