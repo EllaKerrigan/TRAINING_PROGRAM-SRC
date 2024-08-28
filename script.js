@@ -1,121 +1,205 @@
-// fetch list of employees from server
 function fetchEmployeeList() {
-    fetch('/employees')
-    .then(response => response.json())
-    .then(data => {
-        renderEmployeeList(data);
-    })
-    .catch(error => {
-        console.error('Error fetching employee list:', error);
-    });
+    fetch('http://localhost:3000/employees')  
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderEmployeeList(data);
+        })
+        .catch(error => {
+            console.error('Error fetching employee list:', error);
+        });
 }
 
-// render list of employees
+// Render list of employees
 function renderEmployeeList(employees) {
-    const employeeListItems = document.getElementById("employeeList");
-    const employeeListsItems = employee.querySelector("u1");
-    employeeListItems.innerHTML = "";
+    const employeeListContainer = document.getElementById("employeeList");
+    const employeeList = document.createElement("ul");
+    employeeListContainer.innerHTML = "";  // Clear previous list
 
     employees.forEach(employee => {
         const li = document.createElement("li");
-        li.textContent = `${employee.name} (ID: ${employee.id})`;
-        employeeListItems.appendChild(li);
+        li.textContent = `${employee.Name} (ID: ${employee.ID})`;  
+        employeeList.appendChild(li);
     });
 
-    employeeList.style.display = "block"; 
+    employeeListContainer.appendChild(employeeList);
+    employeeListContainer.style.display = "block";
 }
 
-// render training list
+// Render training list with specific training items
 function renderTrainingList() {
+    const trainings = [
+        'Closing Procedure',
+        'Opening Procedure',
+        'Biohazard Training',
+        'Handling Tours Training',
+        'Handling Emergency Procedures'
+    ];
+
+    const trainingListContainer = document.getElementById("trainingList");
     const trainingListItems = document.getElementById("trainingListItems");
-    trainingListItems.innerHTML = "<h2>Training List</h2><ul>";
+    trainingListItems.innerHTML = "";  // Clear previous list
 
     trainings.forEach(training => {
-        trainingListItems.innerHTML += `<li>${training.name} (ID: ${training.id})</li>`;
+        const li = document.createElement("li");
+        li.textContent = training;
+        trainingListItems.appendChild(li);
     });
 
-    trainingListItems.innerHTML += "</ul>";
+    trainingListContainer.style.display = "block";
 }
 
-// randomize employee
+// // Randomize employee and display result
 function randomizeEmployee() {
-    fetch('/randomizeEmployee') // does route exist on the server
-    .then(response => response.json())
-    .then(data => {
-        alert(`Employee Randomized: ${data.name}`);
-    })
-    .catch(error => {
-        console.error('Error randomizing employee:', error);
-    });
+    fetch('http://localhost:3000/randomiseEmployee')  
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the randomized employee on the screen
+            alert(`Employee Randomized: ${data.Name} (ID: ${data.ID})`);
+            const employeeDisplay = document.getElementById('randomEmployeeDisplay');
+            employeeDisplay.textContent = `Employee: ${data.Name} (ID: ${data.ID})`;
+            employeeDisplay.style.display = "block";
+
+            // Send the randomized employee to the server to store in the database
+            fetch('http://localhost:3000/storeRandomEmployee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ Name: data.Name, ID: data.ID })  // Send employee data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to store employee in the database');
+                }
+                return response.text();
+            })
+            .then(message => {
+                console.log(message);
+            })
+            .catch(error => {
+                console.error('Error storing randomized employee:', error);
+            });
+        })
+        .catch(error => {
+            console.error('Error randomizing employee:', error);
+        });
 }
 
-// view completed stewards
+// View completed stewards (randomized employees)
 function viewCompletedStewards() {
-    fetch('/completedStewards') // does route exist on the server
-    .then(response => response.json())
-    .then(data => {
-        alert(`Completed Stewards: ${data.join(', ')}`);
-    })
-    .catch(error => {
-        console.error('Error viewing completed stewards:', error);
-    });
+    fetch('http://localhost:3000/completedStewards')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Display the list of completed stewards
+            const completedStewardsContainer = document.getElementById('completedStewardsList');
+            completedStewardsContainer.innerHTML = '';  // Clear previous list
+            
+            if (data.length === 0) {
+                completedStewardsContainer.textContent = "No completed stewards found.";
+            } else {
+                const ul = document.createElement('ul');
+                
+                data.forEach(steward => {
+                    const li = document.createElement('li');
+                    li.textContent = `${steward.Name} (ID: ${steward.ID})`;  // Adjust to match DB columns
+                    ul.appendChild(li);
+                });
+                
+                completedStewardsContainer.appendChild(ul);
+            }
+            completedStewardsContainer.style.display = "block";
+        })
+        .catch(error => {
+            console.error('Error viewing completed stewards:', error);
+        });
 }
 
-//  remove steward
-function removeSteward() {
-    const id = prompt("Enter ID of steward to remove:");
-    fetch('/removeSteward', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id }),
-    })
-    .then(response => response.text())
-    .then(message => {
-        alert(message);
-        fetchEmployeeList(); // Refresh the employee list?
-    })
-    .catch(error => {
-        console.error('Error removing steward:', error);
-    });
+
+// Remove employee
+function removeEmployee() {
+    const id = prompt("Enter ID of employee to remove:");
+    if (id) {
+        fetch('http://localhost:3000/removeEmployee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ID: id }),  
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(message => {
+            alert(message);
+            fetchEmployeeList();  // Refresh employee list
+        })
+        .catch(error => {
+            console.error('Error removing employee:', error);
+        });
+    }
 }
 
-// add a new steward
-function addNewSteward() {
-    const name = prompt("Enter name of new steward:");
-    const id = prompt("Enter ID of new steward:");
-    fetch('/addSteward', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, id }),
-    })
-    .then(response => response.text())
-    .then(message => {
-        alert(message);
-        fetchEmployeeList(); // Refresh the employee list
-    })
-    .catch(error => {
-        console.error('Error adding steward:', error);
-    });
+// Add a new employee
+function addNewEmployee() {
+    const name = prompt("Enter name of new employee:");
+    const id = prompt("Enter ID of new employee:");
+    if (name && id) {
+        fetch('http://localhost:3000/addEmployee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Name: name, ID: id }),  
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(message => {
+            alert(message);
+            fetchEmployeeList();  // Refresh employee list
+        })
+        .catch(error => {
+            console.error('Error adding employee:', error);
+        });
+    }
 }
 
-// show the employee list
+// Show employee list
 function showEmployeeList() {
     fetchEmployeeList();
-    
+    document.getElementById("employeeList").style.display = "block";
+    document.getElementById("trainingList").style.display = "none";
 }
 
-// show the training list
+// Show training list
 function showTrainingList() {
     renderTrainingList();
     document.getElementById("trainingList").style.display = "block";
     document.getElementById("employeeList").style.display = "none";
 }
 
-// Function to handle login
+// Handle login
 function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -132,14 +216,14 @@ function login() {
     }
 }
 
+// Hide bear image on login
 function hideBearImage() {
-    var bearImageContainer = document.getElementById("bearImageContainer");
+    const bearImageContainer = document.getElementById("bearImageContainer");
     if (bearImageContainer) {
         bearImageContainer.style.display = "none";
     }
 }
 
-// Ensure that the script is properly included
 document.addEventListener("DOMContentLoaded", function() {
-    fetchEmployeeList(); // Fetch employees when the page loads
+     
 });

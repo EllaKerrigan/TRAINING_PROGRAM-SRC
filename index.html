@@ -38,16 +38,18 @@
                     <li><a href="#" onclick="showTrainingList()">View Training List</a></li>
                     <li><a href="#" onclick="randomizeEmployee()">Randomize Employee</a></li>
                     <li><a href="#" onclick="viewCompletedStewards()">View Completed Stewards</a></li>
-                    <li><a href="#" onclick="removeSteward()">Remove Steward</a></li>
-                    <li><a href="#" onclick="addNewSteward()">Add New Steward</a></li>
+                    <li><a href="#" onclick="removeEmployee()">Remove Employee</a></li>
+                    <li><a href="#" onclick="addNewEmployee()">Add New Employee</a></li>
                 </ul>
             </nav>
+            <div id="completedStewardsList" style="display:none;"></div>
 
             <section id="contentArea">
                 <div id="employeeList" style="display: none;">
                     <h2>Employee List</h2>
                     <ul id="employeeListItems"></ul>
                 </div>
+                <div id="randomEmployeeDisplay" style="display:none;"></div>
 
                 <div id="trainingList" style="display: none;">
                     <h2>Training List</h2>
@@ -65,8 +67,8 @@
                 <div class="dashboard-option" onclick="showTrainingList()">View Training List</div>
                 <div class="dashboard-option" onclick="randomizeEmployee()">Randomize Employee</div>
                 <div class="dashboard-option" onclick="viewCompletedStewards()">View Completed Stewards</div>
-                <div class="dashboard-option" onclick="removeSteward()">Remove Steward</div>
-                <div class="dashboard-option" onclick="addNewSteward()">Add New Steward</div>
+                <div class="dashboard-option" onclick="removeEmployee()">Remove Employee</div>
+                <div class="dashboard-option" onclick="addNewEmployee()">Add New Employee</div>
             </div>
         </div>
     </main>
@@ -74,6 +76,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
