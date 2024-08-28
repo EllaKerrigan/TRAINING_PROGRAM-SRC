@@ -7,6 +7,17 @@ It keeps track of employees in training and provides a user-friendly interface f
 
 <img width="1387" alt="Screenshot 2024-08-28 at 01 52 29" src="https://github.com/user-attachments/assets/e4ae596a-ba2b-4fca-b602-bea0e1e8ede9">
 
+Add new Employee Function: 
+
+
+
+
+<img width="1413" alt="Screenshot 2024-08-28 at 01 55 14" src="https://github.com/user-attachments/assets/5c6df316-abd2-4e16-ab86-d265ba58d9e7">
+
+<img width="1397" alt="Screenshot 2024-08-28 at 01 55 32" src="https://github.com/user-attachments/assets/04d7c590-5c6d-483d-a2c5-499db23a7150">
+
+<img width="1146" alt="Screenshot 2024-08-28 at 01 55 36" src="https://github.com/user-attachments/assets/18219c53-ad6c-4f06-a3aa-b49178d57e49">
+
 
 ## Features
 
