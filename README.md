@@ -5,6 +5,8 @@ It keeps track of employees in training and provides a user-friendly interface f
 
 <img width="1424" alt="frontpage" src="https://github.com/user-attachments/assets/460c380b-b887-4f9c-ab87-439eca82fc64">
 
+<img width="1387" alt="Screenshot 2024-08-28 at 01 52 29" src="https://github.com/user-attachments/assets/e4ae596a-ba2b-4fca-b602-bea0e1e8ede9">
+
 
 ## Features
 
